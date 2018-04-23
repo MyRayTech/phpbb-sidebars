@@ -1,0 +1,42 @@
+<!-- INCLUDE overall_header.html -->
+
+<a id="maincontent"></a>
+
+<h1>{L_ACP_SIDEBARS_TITLE}</h1>
+
+<p>{L_ACP_SIDEBARS_TITLE_EXPLAIN}</p>
+
+<!-- IF S_ERROR -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{ERROR_MSG}</p>
+	</div>
+<!-- ENDIF -->
+
+
+
+	<input class="button1" type="submit" id="submit_real" name="submit" value="{L_SUBMIT}" style="display:none;" />
+	<table class="blocks_manage">
+		<tr>
+			<th>Name</th>
+			<th style="width: 10%;">Order</th>
+			<th style="width: 10%;">Side</th>
+			<th style="width: 10%;">Actions</th>
+		</tr>
+	<!-- BEGIN blocks -->
+	
+	<tr>
+		<td style="border-bottom: 1px dotted black;">{blocks.NAME}</td>
+		<td style="border-bottom: 1px dotted black;">{blocks.ORDER}</td>
+		<td style="border-bottom: 1px dotted black;">{blocks.SIDE}</td>
+		<td style="text-align: right; border-bottom: 1px dotted black;">
+			<a href="{blocks.LINK}&amp;action=edit&amp;id={blocks.ID}">{ICON_EDIT}</a>
+			<a href="{blocks.LINK}&amp;action=delete&amp;id={blocks.ID}">{ICON_DELETE}</a>
+		</td>		
+	</tr>
+
+	<!-- END blocks -->					
+	</table>
+<br />
+<a href="{U_ADD_BLOCK}"><div style="float:right;"><input class="button2" name="add"  type="button" value="Add a block" /></div></a>
+<!-- INCLUDE overall_footer.html -->

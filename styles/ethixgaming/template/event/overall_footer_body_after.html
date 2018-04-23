@@ -1,0 +1,12 @@
+<!-- INCLUDEJS ./jquery.jcountdown.min.js -->
+<script type="text/javascript">
+$(function () {
+	$("#timer").countdown({
+		date: countdownDate,
+		yearsAndMonths: true,
+		template: countdownTemplate,
+		secText: 'secs',
+		offset:	countdownOffset
+	});
+});
+</script>

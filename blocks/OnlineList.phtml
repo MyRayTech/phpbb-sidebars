@@ -1,0 +1,33 @@
+<?php
+
+use phpbb\user_loader;
+
+global $db, $phpbb_root_path, $phpEx;
+
+if (!function_exists('user_get_id_name'))
+{
+	include "{$phpbb_root_path}/includes/functions_user.php";
+}
+
+$online = obtain_users_online();
+
+$loader = new user_loader($db, $phpbb_root_path, $phpEx, USERS_TABLE);
+$loader->load_users($online['online_users']);
+
+
+user_get_id_name($online['online_users'], $uname);
+$content .= '<div class="online-block">';
+foreach ($online['online_users'] as $users)
+{
+
+	$user = $loader->get_user($users);
+	if ($user['group_id'] !== '6')
+	{
+		$rank	 = $loader->get_rank($users);
+		$avatar	 = $loader->get_avatar($users);
+		$content .= '<div class="online-block-avatar">' . $avatar . '</div><div class="online-block-user">' .
+				get_username_string('full', $user['user_id'], $user['username'], $user['user_colour'])
+				. '<br />' . $rank['rank_title'] . '<br />Online Now!</div><hr /><div style="clear:both;"></div>';
+	}
+}
+$content .= '</div>';

@@ -1,0 +1,3 @@
+raytech_sidebars_main_controller:
+    path: /
+    defaults: { _controller: raytech.sidebars.main.controller:display }

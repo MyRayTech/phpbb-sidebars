@@ -1,0 +1,2 @@
+parameters:
+    raytech.sidebars.tables.blocks: %core.table_prefix%blocks

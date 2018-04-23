@@ -1,0 +1,7 @@
+fieldset.blocks dt {
+	width: 25%;
+}
+
+fieldset.blocks dd {
+	margin: 0 0 0 25%;
+}

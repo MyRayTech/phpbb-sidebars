@@ -1,0 +1,36 @@
+{
+    "name": "raytech/sidebars",
+    "type": "phpbb-extension",
+    "description": "1 or 2 sidebars to the forums Pages",
+    "homepage": "https://www.myraytech.net",
+    "version": "1.0.0-BETA",
+    "keywords": [
+        "phpbb",
+        "3 Column",
+        "Sidebars",
+        "CMS"
+    ],
+    "license": "GPL-2.0",
+    "authors": [
+          {
+            "name": "Kevin Roy",
+            "email": "royk@myraytech.net",
+            "homepage" : "https://myraytech.net",
+            "role" : "Lead Developer"
+          }
+    ],
+    "require": {
+        "php": ">=5.5.*"
+    },
+    "extra": {
+        "display-name": "Sidebars",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.*"
+        },
+        "version-check": {
+            "host": "versions.myraytech.net",
+            "directory": "/sidebars",
+            "filename": "version_check.json"
+        }
+    }
+}

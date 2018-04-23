@@ -1,0 +1,23 @@
+<?php
+
+use phpbb\user_loader;
+
+global $db, $phpbb_root_path, $phpEx, $user;
+$loader = new user_loader($db, $phpbb_root_path, $phpEx, USERS_TABLE);
+
+if ($user->data['user_id'] == ANONYMOUS)
+{
+	$content = '<a href="ucp.php?mode=login">Please login to view your information.</a>';
+}
+else
+{
+	$loader->load_user_by_username($user->data['username']);
+	$user_data	 = $loader->get_user($user->data['user_id']);
+	$avatar		 = $loader->get_avatar($user_data['user_id']);
+	$rank		 = $loader->get_rank($user_data['user_id']);
+	//var_dump($user_data);
+
+	$content = '<center>' . $avatar . '<br />'
+			. get_username_string('full', $user->data['user_id'], $user->data['username'], $user->data['user_colour'], "Guest") . 
+			'<br />' . $rank['rank_title'] . '<br /> Posts: ' . $user_data['user_posts'] . '</center>';
+}

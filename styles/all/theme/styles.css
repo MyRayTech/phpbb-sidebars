@@ -1,0 +1,62 @@
+/* 
+    Created on : Aug 10, 2015, 12:08:15 PM
+    Author     : Reaper
+*/
+
+.sidebarleft{
+	display: inline-block;
+	float:left;
+	min-width: 170px;
+	width: 20%;
+	/*margin-top:50px;*/
+	padding-right:5px;
+}
+.sidebarright {
+	display: inline-block;
+	/*margin-top:50px;*/
+	float:right;
+	min-width:170px;
+	width: 20%;
+	padding-left:5px;
+}
+.forumwrap{
+	display: inline-block;
+	float:left;
+	/*width: 60%;*/
+}
+
+@media (max-width:900px) {
+	.forumwrap{
+		width: 100%;
+	}
+	.sidebarleft {
+		display: inline;
+	}
+	.sidebarright {
+		display: inline;
+	}
+}
+.sidebarcenter{
+	float:left;
+	display:inline;
+}
+.break {
+	clear:both;
+}
+fieldset.blocks dt {
+	width: 25%;
+}
+.online-block-avatar {
+	float:left;
+	padding-right: 5px;
+}
+.online-block-avatar > img {
+	max-width: 46px;
+	max-height: 46px;
+}
+.online-block:last-child > hr {
+	display:none;
+}
+.online-block-user {
+	float:left;
+}

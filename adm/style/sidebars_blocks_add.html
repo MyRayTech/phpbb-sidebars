@@ -1,0 +1,259 @@
+<!-- INCLUDE overall_header.html -->
+
+<a id="maincontent"></a>
+
+<h1>{L_ACP_SIDEBARS_TITLE}</h1>
+
+<p>{L_ACP_SIDEBARS_TITLE_EXPLAIN}</p>
+
+<!-- IF S_ERROR -->
+<div class="errorbox">
+	<h3>{L_WARNING}</h3>
+	<p>{ERROR_MSG}</p>
+</div>
+<!-- ENDIF -->
+
+<form id="sidebars" method="post" action="">
+
+	<input class="button1" type="submit" id="submit_real" name="submit" value="{L_SUBMIT}" style="display:none;" />
+
+	<fieldset>
+		<legend>{PAGE_TITLE}</legend>
+		<!-- IF S_EDIT_BLOCK -->
+			<!-- BEGIN block -->
+		<dl>
+			<dt>
+			<label for="block_name">Block Title:</label>
+			</dt>
+			<dd>
+				<input id="block_name" type="text" value="{block.NAME}" name="block_name" maxlength="50" size="20">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_content">Insert Your Content:</label>
+			</dt>
+			<dd>
+				<!-- INCLUDE acp_posting_buttons.html -->
+				<dl class="responsive-columns">
+					<dt style="width: 90px;" id="color_palette_placeholder" data-orientation="v" data-height="12" data-width="15" data-bbcode="true"></dt>
+					<dd style="margin-{S_CONTENT_FLOW_BEGIN}: 90px;">
+						<textarea name="block_content" rows="25" cols="60" style="width: 95%;" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onfocus="initInsertions();" data-bbcode="true">{block.CONTENT}</textarea>
+					</dd>
+					<dd style="margin-{S_CONTENT_FLOW_BEGIN}: 90px; margin-top: 5px;">
+						<label><input type="checkbox" class="radio html-off" name="parse_bbcode"<!-- IF block.BBCODE --> checked="checked"<!-- ENDIF --> /> {L_PARSE_BBCODE}</label>
+						<label><input type="checkbox" class="radio html-off" name="parse_smilies"<!-- IF block.SMILIES --> checked="checked"<!-- ENDIF --> /> {L_PARSE_SMILIES}</label>
+						<label><input type="checkbox" class="radio html-off" name="parse_magic_url"<!-- IF block.URL --> checked="checked"<!-- ENDIF --> /> {L_PARSE_URLS}</label>
+						<label><input type="checkbox" class="radio html-on" name="parse_html"<!-- IF block.HTML --> checked="checked"<!-- ENDIF --> /> {L_PARSE_HTML}</label>
+					</dd>
+					<dd style="margin-{S_CONTENT_FLOW_BEGIN}: 90px; margin-top: 10px;"><strong>{L_OPTIONS}{L_COLON} </strong>{BBCODE_STATUS} :: {IMG_STATUS} :: {FLASH_STATUS} :: {URL_STATUS} :: {SMILIES_STATUS}</dd>
+				</dl>
+				
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_side">Location of Block:</label>
+			</dt>
+			<dd>
+				<select id="block_side" name="block_side">
+					<option value="0"<!-- IF block.SIDE == 0 --> selected="selected"<!-- ENDIF --->>Right</option>
+					<option value="1"<!-- IF block.SIDE == 1 --> selected="selected"<!-- ENDIF --->>Left</option>
+					<option value="2"<!-- IF block.SIDE == 2 --> selected="selected"<!-- ENDIF --->>Center</option>
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_order">Specify The Display Order:</label>
+			</dt>
+			<dd>
+				<input id="block_order" type="number" value="{block.ORDER}" name="block_order" max="30">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_display">Should this block be shown to the public?:</label>
+			</dt>
+			<dd>
+				<label>
+					<input id="block_display" class="radio" type="radio" <!-- IF block.DISPLAY -->checked="checked" <!-- ENDIF -->value="1" name="block_display">
+					Enabled
+				</label>
+				<label>
+					<input class="radio" type="radio" <!-- IF not block.DISPLAY -->checked="checked" <!-- ENDIF --> value="0" name="block_display">
+					Disabled
+				</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_display_guest">Display to guest:</label>
+			<br>
+			<span>Should Guests be able to see it?.</span>
+			</dt>
+			<dd>
+				<label>
+					<input id="block_display_to_guest" class="radio"<!-- IF block.DISPLAY_GUEST -->checked="checked" <!-- ENDIF --> type="radio" value="1" name="block_display_to_guest">
+					Enabled
+				</label>
+				<label>
+					<input class="radio" <!-- IF not block.DISPLAY_GUEST -->checked="checked" <!-- ENDIF -->type="radio" value="0" name="block_display_to_guest">
+					Disabled
+				</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_display_on_index">Should this be displayed on the index page?:</label>
+			</dt>
+			<dd>
+				<label>
+					<input id="block_display_on_index" class="radio" <!-- IF block.DISPLAY_INDEX -->checked="checked" <!-- ENDIF -->type="radio" value="1" name="block_display_on_index">
+					Enabled
+				</label>
+				<label>
+					<input class="radio" <!-- IF not block.DISPLAY_INDEX -->checked="checked" <!-- ENDIF -->type="radio" value="0" name="block_display_on_index">
+					Disabled
+				</label>
+			</dd>
+		</dl>
+			<input type="hidden" name='block_id' value='{block.ID}' />
+		<!-- END block -->
+		<dl>
+			<dt>
+			<label for="block_order">Specify the template file to use:</label>
+			</dt>
+			<dd>
+				<select name="block_template">
+					<option value="None">None</option>
+					<!-- BEGIN templates -->
+						<option <!-- IF templates.SELECTED -->selected="selected" <!-- ENDIF -->value="{templates.DBNAME}">{templates.NAME}</option>
+					<!-- END templates -->
+				</select>
+			</dd>
+		</dl>
+		
+		<!-- ELSEIF S_ADD_BLOCK -->
+			
+		<dl>
+			<dt>
+			<label for="block_name">Block Title:</label>
+			</dt>
+			<dd>
+				<input id="block_name" type="text" name="block_name" maxlength="40" size="20">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_content">Insert Your Content:</label>
+			</dt>
+			<dd>
+				<!-- INCLUDE acp_posting_buttons.html -->
+				<dl class="responsive-columns">
+					<dt style="width: 90px;" id="color_palette_placeholder" data-orientation="v" data-height="12" data-width="15" data-bbcode="true"></dt>
+					<dd style="margin-{S_CONTENT_FLOW_BEGIN}: 90px;">
+						<textarea name="block_content" rows="25" cols="60" style="width: 95%;" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onfocus="initInsertions();" data-bbcode="true">{block.CONTENT}</textarea>
+					</dd>
+					<dd style="margin-{S_CONTENT_FLOW_BEGIN}: 90px; margin-top: 5px;">
+						<label><input type="checkbox" class="radio html-off" name="parse_bbcode"<!-- IF S_PARSE_BBCODE_CHECKED --> checked="checked"<!-- ENDIF --> /> {L_PARSE_BBCODE}</label>
+						<label><input type="checkbox" class="radio html-off" name="parse_smilies"<!-- IF S_PARSE_SMILIES_CHECKED --> checked="checked"<!-- ENDIF --> /> {L_PARSE_SMILIES}</label>
+						<label><input type="checkbox" class="radio html-off" name="parse_magic_url"<!-- IF S_PARSE_MAGIC_URL_CHECKED --> checked="checked"<!-- ENDIF --> /> {L_PARSE_URLS}</label>
+						<label><input type="checkbox" class="radio html-on" name="parse_html"<!-- IF S_PARSE_HTML_CHECKED --> checked="checked"<!-- ENDIF --> /> {L_PARSE_HTML}</label>
+					</dd>
+					<dd style="margin-{S_CONTENT_FLOW_BEGIN}: 90px; margin-top: 10px;"><strong>{L_OPTIONS}{L_COLON} </strong>{BBCODE_STATUS} :: {IMG_STATUS} :: {FLASH_STATUS} :: {URL_STATUS} :: {SMILIES_STATUS}</dd>
+				</dl>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_side">Location of Block:</label>
+			</dt>
+			<dd>
+				<select id="block_side" name="block_side">
+					<option value="0">Right</option>
+					<option value="1">Left</option>
+					<option value="2">Center</option>
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_order">Specify The Display Order:</label>
+			</dt>
+			<dd>
+				<input id="block_order" type="number" name="block_order" max="30">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_display">Should this block be shown to the public?:</label>
+			</dt>
+			<dd>
+				<label>
+					<input id="block_display" class="radio" type="radio" value="1" name="block_display">
+					Enabled
+				</label>
+				<label>
+					<input class="radio" type="radio" checked="checked" value="0" name="block_display">
+					Disabled
+				</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_display_guest">Display to guest:</label>
+			<br>
+			<span>Should Guests be able to see it?.</span>
+			</dt>
+			<dd>
+				<label>
+					<input id="block_display_to_guest" class="radio" type="radio" value="1" name="block_display_to_guest">
+					Enabled
+				</label>
+				<label>
+					<input class="radio" type="radio" checked="checked" value="0" name="block_display_to_guest">
+					Disabled
+				</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_display_on_index">Should this be displayed on the index page?:</label>
+			</dt>
+			<dd>
+				<label>
+					<input id="block_display_on_index" class="radio" type="radio" value="1" name="block_display_on_index">
+					Enabled
+				</label>
+				<label>
+					<input class="radio" type="radio" checked="checked" value="0" name="block_display_on_index">
+					Disabled
+				</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+			<label for="block_order">Specify the template file to use:</label>
+			</dt>
+			<dd>
+				<select name="block_template">
+					<option value="None">None</option>
+					<!-- BEGIN templates -->
+					<option value="{templates.DBNAME}">{templates.NAME}</option>
+					<!-- END templates -->
+				</select>
+			</dd>
+		</dl>
+		<!-- ENDIF -->
+		
+	</fieldset>
+
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+	{S_FORM_TOKEN}
+</form>
+
+<!-- INCLUDE overall_footer.html -->

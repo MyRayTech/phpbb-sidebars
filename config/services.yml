@@ -1,0 +1,61 @@
+imports:
+    - { resource: tables.yml }
+    
+services:
+    raytech.sidebars.listener:
+        class: raytech\sidebars\event\listener
+        arguments:
+            - @auth
+            - @config
+            - @config_text
+            - @dbal.conn
+            - @controller.helper
+            - @request
+            - @template
+            - @ext.manager
+            - @service_container
+            - @raytech.sidebars.operator
+            - @user
+            - %raytech.sidebars.tables.blocks%
+        tags:
+            - { name: event.listener }
+            
+    raytech.sidebars.admin.controller:
+        class: raytech\sidebars\controller\admin_controller
+        arguments:
+            - @controller.helper
+            - @log
+            - @request
+            - @template
+            - @user
+            - @service_container
+            - @dispatcher
+            - %core.root_path%
+            - %core.php_ext%
+            
+    raytech.sidebars.main.controller:
+        class: raytech\sidebars\controller\main
+        arguments:
+            - @service_container
+            - @dbal.conn
+            - @controller.helper
+            - %raytech.sidebars.tables.blocks%
+            
+    raytech.sidebars.entity:
+        class: raytech\sidebars\entity\blocks
+        scope: prototype # scope MUST be prototype for this to work!
+        arguments:
+            - @dbal.conn
+            - @config
+            - @dispatcher
+            - %raytech.sidebars.tables.blocks%
+
+    raytech.sidebars.operator:
+        class: raytech\sidebars\operators\blocks
+        arguments:
+            - @cache.driver
+            - @service_container
+            - @dbal.conn
+            - @ext.manager
+            - %raytech.sidebars.tables.blocks%
+                

@@ -1,0 +1,21 @@
+<!-- IF S_DISPLAY_BLOCKS -->
+<!-- IF S_LEFT_SIDEBAR -->
+<div class="sidebarleft"<!-- IF S_SIDEBAR_FORUM --> style="margin-top:37px; display:inline-block;"<!-- ENDIF -->>
+	<!-- BEGIN leftblock -->
+	<div class="panel_top_left"></div><div class="panel_top_right"></div>
+	<div class="panel_container">
+		<div class="inner">
+			<div class="block_header">{leftblock.NAME}</div>
+			<div class="block_content">{leftblock.CONTENT}</div>
+		</div>
+	</div>
+	<div class="panel_bottom_left"></div><div class="panel_bottom_right"></div>
+	<!-- END leftblock -->
+</div>
+<!-- ENDIF -->
+
+<div class="forumwrap" <!-- IF S_LEFT_SIDEBAR and S_RIGHT_SIDEBAR -->style="width: 59%; vertical-align: top; display: inline-block;"<!-- ENDIF -->
+	 <!-- IF S_LEFT_SIDEBAR or S_RIGHT_SIDEBAR -->style="width:79%; vertical-align: top; display: inline-block;"<!-- ENDIF -->
+	 <!-- IF not S_LEFT_SIDEBAR and not S_RIGHT_SIDEBAR -->style="width:100%"<!-- ENDIF -->> 
+	 
+<!-- ENDIF -->
